@@ -43,5 +43,6 @@ Used for containerization of web app subsystems. Allows for efficient and broad 
 
 Python web framework for MVT style web development.
 
+_Disclaimer: Deleted previous repositories containing individually working components of the current system. 11/10/2020 marks the first container properly configured for Heroku deployment. New working repository created and previous one deleted for organizational purposes as well as to assure working system remain sanitized from previous configuring errors._
 
 
