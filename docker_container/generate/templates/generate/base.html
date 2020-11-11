@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Skynet Pizzeria</title>
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" style="background-color: #cc0000;">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'index' %}" style="color: white">
+        <strong>Skynet Pizzeria</strong>
+      </a>
+    </div>
+
+     <!-- ITEMS (empty action stuff) -->
+  </div>
+</nav>
+{% block body%}
+{% endblock%}
+</body>
+</html>

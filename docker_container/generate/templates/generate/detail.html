@@ -1,0 +1,34 @@
+
+{% extends 'generate/base.html' %}
+{% block body %}
+    <div class="container">
+      	<div class="row">
+  			<div class="col-md-6">
+  				<div class="panel panel-primary">
+  					<div class="panel-heading" style="background-color: #cc0000;">
+  						<h3 class="panel-title">Pizza with {{pizza}}</h3>
+  					</div>
+  					<table class="table table-hover" id="dev-table">
+  						<thead>
+  							<tr>
+  								<th>#</th>
+  								<th>Topping Type</th>
+  								<th>Ingredient</th>
+  								<th>Details</th>
+  							</tr>
+  						</thead>
+  						<tbody>
+                {% for pizza in pizza.topping_set.all %}
+                <tr>
+                  <td>{{ pizza.id }}</td>
+                  <td>{{ pizza.topping_type }}</td>
+                  <td>{{ pizza.ingredient }}</td>
+                  <td><a href="{% url 'nutrition' %}">Details</a></td>
+                </tr>
+                {% endfor %}
+  						</tbody>
+  					</table>
+  				</div>
+  		</div>
+  	</div>
+{% endblock %}
