@@ -4,6 +4,10 @@
 
 ```pipenv shell```
 
+**Update virtual environment:**
+
+```pipenv update```
+
 **To run Django on the localhost:**
 
 ```python manage.py runserver```
@@ -22,4 +26,22 @@
 
 **To open the web app being run on Heroku server:**
 
-```heroku open --app blooming-beyond-76863```     
+```heroku open --app blooming-beyond-76863```   
+
+
+#Chosen libraries and frameworks
+
+**Pipenv**
+
+Virtual environment used for managing package dependencies
+
+**Docker**
+
+Used for containerization of web app subsystems. Allows for efficient and broad deployment. Creating several images that can be deployed across many hosting services allows for greater dependability of web app. Containerizing web app also allows for deployment versatility
+
+**Djano**
+
+Python web framework for MVT style web development.
+
+
+
