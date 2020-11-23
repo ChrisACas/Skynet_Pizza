@@ -24,7 +24,7 @@ from endpoints.urls import urlpatterns as endpoints_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate/', include('generate.urls')),
+    path('', include('generate.urls')),
 ]
 
 urlpatterns += endpoints_urlpatterns

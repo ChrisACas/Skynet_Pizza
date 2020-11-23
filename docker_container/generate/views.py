@@ -1,5 +1,11 @@
+import json
 from django.shortcuts import render, get_object_or_404
-from .models import Pizza, Topping
+from . models import Pizza, Topping
+from . serializers import PizzaSerializer
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 
 # Create your views here.
@@ -25,3 +31,25 @@ def detail(request, pizza_id):
 
 def nutrition(request):
     return render(request, 'generate/nutrition.html', {})
+
+
+@api_view(['GET'])
+def getAllPizza(request):
+    pizza = Pizza.objects.all()
+    serializer = PizzaSerializer(pizza, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getPizza(request, id):
+    pizza = Pizza.objects.get(id=id)
+    serializer = PizzaSerializer(pizza, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createPizza(request):
+    pizza = PizzaSerializer(data=request.data)
+
+    if pizza.is_valid():
+        pizza.save()
+
+    return Response(pizza.data)

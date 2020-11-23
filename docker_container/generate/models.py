@@ -10,6 +10,7 @@ class Pizza(models.Model):
     def __str__(self):
         return self.crust.lower() + ' crust, ' + self.sauce + ' sauce, and ' + self.cheese + ' cheese'
 
+
 class Topping(models.Model):
     pizza = models.ForeignKey(to=Pizza, on_delete=models.CASCADE)
     topping_type = models.CharField(max_length=80)
