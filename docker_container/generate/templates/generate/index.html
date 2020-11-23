@@ -5,15 +5,61 @@
 h1 {
   text-align: center;
 }
-div{
+option, div{
   text-align:center;
 }
+.btn{
+  background-color: #cc0000;
+}
+
 </style>
 
 <h1 text-align=center>Generate a Pizza Recipe</h1>
 <div>
-  <a class="btn btn-large btn-info" style="background-color: #cc0000;" href="1">
+  <a class="btn btn-large btn-info" href="1">
     Generate Pizza
   </a>
+</div>
+
+<div>
+  <a class="link"  data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapsePrefForm">Recipe Preferences...</a>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+      <div class="collapse multi-collapse" id="collapsePrefForm">
+        <div class="card card-body">
+
+          <form>
+
+            <div class="form-group">
+              <label for="allergySelect">Allergies:</label>
+              <select multiple class="form-control" id="allergySelect">
+                <option>Lactose</option>
+                <option>Egg</option>
+                <option>Fish</option>
+                <option>Nut</option>
+                <option>Gluten</option>
+                <option>Soybean</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferenceSelect">Food Preferences:</label>
+              <select multiple class="form-control" id="preferenceSelect">
+                <option>Vegan</option>
+                <option>Vegetarian</option>
+              </select>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
