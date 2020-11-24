@@ -7,3 +7,9 @@ class PizzaSerializer(serializers.ModelSerializer):
         model = Pizza
         # all Pizza model fields
         fields = '__all__'
+
+# class ToppingSerializer(serializers.ModelSerializer):
+#         class Meta:
+#             model = Topping
+#             # all Pizza model fields
+#             fields = '__all__'
