@@ -32,6 +32,9 @@ def detail(request, pizza_id):
 def nutrition(request):
     return render(request, 'generate/nutrition.html', {})
 
+def form(request):
+    return render(request, 'generate/form.html', {})
+
 
 @api_view(['GET'])
 def getAllPizza(request):

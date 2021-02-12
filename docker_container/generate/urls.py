@@ -15,6 +15,9 @@ urlpatterns = [
     #/generate/details
     path('nutrition',  views.nutrition, name='nutrition'),
 
+    #/generate/form
+    path('form',  views.form, name='form'),
+
     path('AllPizza/', views.getAllPizza, name='AllPizza'),
     path('Pizza/<int:id>/', views.getPizza, name='Pizza'),
     path('CreatePizza/', views.createPizza, name='CreatePizza'),
