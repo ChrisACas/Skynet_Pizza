@@ -16,24 +16,17 @@ URLlist = []
 URLlist.append("https://www.allrecipes.com/")
 visitedList = []
 scraper = Sitemap(URLlist, visitedList)
-scraper.readPageLinks()
-scraper.clean()
-#scraper.printURLlist()
+
+for x in range(100):
+    scraper.readPageLinks()
+    scraper.clean()
+    scraper.stats()
+
+scraper.printvisitedList
 exit()
 
 
 
-
-
-
-
-
-#scrape url [add function to find url's / generate]
-for x in range(10000, 99999):
-    scraper = scrape_me('https://www.allrecipes.com/recipe/' + str(x) + '/')
-    print(str(x) + ":   " + scraper.title())
-    
-exit() 
 
 ingredients = scraper.ingredients()
 nutrients = scraper.nutrients()
