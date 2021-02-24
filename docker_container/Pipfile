@@ -4,8 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.2.4"
+djangorestframework = "==3.10.3"
 gunicorn = "*"
+django-filter = "==2.2.0"
+joblib = "==0.14.0"
+Markdown = "==3.1.1"
+numpy = "==1.17.3"
+pandas = "==0.25.2"
+requests = "==2.22.0"
+scikit-learn = "*"
+Django = "==2.2.4"
+
+
 
 [dev-packages]
 

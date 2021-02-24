@@ -3,10 +3,13 @@
 {% block body %}
     <div class="container">
       	<div class="row">
-  			<div class="col-md-6">
+        <div class="col-md-4">
+        </div>
+  			<div class="col-md-4">
+          <h1>Pizza Recipe</h1>
   				<div class="panel panel-primary">
   					<div class="panel-heading" style="background-color: #cc0000;">
-  						<h3 class="panel-title">Pizza with {{pizza}}</h3>
+  						<h3 class="panel-title">{{pizza}}</h3>
   					</div>
   					<table class="table table-hover" id="dev-table">
   						<thead>
@@ -30,5 +33,7 @@
   					</table>
   				</div>
   		</div>
-  	</div>
+	  </div>
+	  
+
 {% endblock %}

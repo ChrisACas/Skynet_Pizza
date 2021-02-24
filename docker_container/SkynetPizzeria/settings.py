@@ -25,7 +25,7 @@ SECRET_KEY = '5fu9*bx9##@9c$iz=3hm=9i*8@v)5ztgpfe2dw8jy=%(*_70tm'
 # DEBUG can be True/False or 1/0
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = ['blooming-beyond-76863.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['blooming-beyond-76863.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #for tutorial
+    'endpoints.apps.EndpointsConfig',
+    'ServerSideML',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -117,5 +121,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'

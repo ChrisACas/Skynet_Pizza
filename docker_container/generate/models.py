@@ -8,7 +8,8 @@ class Pizza(models.Model):
     cheese = models.CharField(max_length=80)
 
     def __str__(self):
-        return self.crust.lower() + ' crust, ' + self.sauce + ' sauce, and ' + self.cheese + ' cheese'
+        return self.crust + ' crust | ' + self.sauce + ' sauce | ' + self.cheese + ' cheese'
+
 
 class Topping(models.Model):
     pizza = models.ForeignKey(to=Pizza, on_delete=models.CASCADE)
