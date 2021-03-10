@@ -6,6 +6,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+#integration
+from subprocess import run, PIPE
+
 
 
 # Create your views here.
@@ -21,6 +24,7 @@ def index(request):
 #     context = {'all_pizza': all_pizza}
 #     return render(request, 'generate/index.html', context)
 
+
 def detail(request, pizza_id):
     all_pizza = Pizza.objects.all()
     pizza = get_object_or_404(Pizza, id=pizza_id)
@@ -35,7 +39,21 @@ def nutrition(request):
 def form(request):
     return render(request, 'generate/form.html', {})
 
+########## For Inegration Below 
+def integration(request):
+    return render(request, 'generate/integration.html')
 
+def external(request):
+    ingredient = request.POST.get
+    recommendation = run([sys.executable, "..//..//PizzeriaMLcode.py", ingredient], shell=False, stdout=PIPE)
+    print(recommendation)
+
+    return render(request, 'integration.html', {'ingredient1':ingredient})
+    
+
+
+
+########### For Integration Above
 @api_view(['GET'])
 def getAllPizza(request):
     pizza = Pizza.objects.all()

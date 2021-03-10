@@ -1,0 +1,90 @@
+{% extends 'generate/base.html' %}
+{% block body %}
+<style>
+
+    h1 {
+      text-align: center;
+    }
+    option, div{
+      text-align:center;
+    }
+    .btn{
+      background-color: #cc0000;
+    }
+    
+</style>
+    
+
+<h1 text-align=center>Generate a Pizza Recipe</h1>
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+    </div>
+        <div class="col-md-4">
+        <h3>Recipe Start</h3>
+        <form action="/action_page.php">
+            <label text-align=center>Ingredient:</label><br>
+            <input text-align=center type="text"><br>
+            <div class="collapse multi-collapse" id="collapsePrefForm">
+                <div class="card card-body">
+        
+                    <form>
+                        <label text-align=center>Ingredient 2:</label><br>
+                        <input text-align=center type="text"><br><br>
+                    </form>
+                </div>
+            </div>
+        </form>  
+    </div>
+</div>
+</div>
+</div>
+
+<div>
+    <a class="link"  data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapsePrefForm">Add Ingredients...</a>
+</div>
+
+<div>
+    <a class="link"  data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapsePrefForm">Nutritional Preferences...</a>
+</div>
+  
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+        <div class="collapse multi-collapse" id="collapsePrefForm2">
+            <div class="card card-body">
+
+            <button onclick= "location.href= '{% url 'PizzeriaMLcode' %}'">Execute Script</button> <hr>
+
+            <form action="=/external/" method="post">
+                {% csrf_token %}
+                Input Text: 
+                <input type="text" name="param" required><br>
+                {{ingredient_external}}<br>
+                {{ingredient1}}
+                <input type="submit" value="Execute Externel Script">
+
+                
+
+            </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a class="btn btn-large btn-info" href="1">
+        Generate Other Ingredients
+    </a>
+</div>
+
+
+{% endblock %}
+

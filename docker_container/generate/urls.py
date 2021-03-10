@@ -23,4 +23,8 @@ urlpatterns = [
     path('CreatePizza/', views.createPizza, name='CreatePizza'),
 
 
+    #/generate/integration
+    path('integration', views.integration, name='integration')
+
+
 ]

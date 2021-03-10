@@ -17,12 +17,12 @@ URLlist.append("https://www.allrecipes.com/")
 visitedList = []
 scraper = Sitemap(URLlist, visitedList)
 
-for x in range(100):
+while len(scraper.URLlist) < 1000:
     scraper.readPageLinks()
     scraper.clean()
     scraper.stats()
 
-scraper.printvisitedList
+scraper.printvisitedList()
 exit()
 
 
