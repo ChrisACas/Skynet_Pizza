@@ -24,7 +24,8 @@ urlpatterns = [
 
 
     #/generate/integration
-    path('integration', views.integration, name='integration')
+    path('integration/', views.integration, name='integration'),
+    path('external/', views.external, name='externel')
 
 
 ]

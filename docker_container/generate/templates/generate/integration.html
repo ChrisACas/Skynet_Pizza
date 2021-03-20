@@ -20,70 +20,47 @@
 
 <div class="container">
     <div class="row">
-    <div class="col-md-4">
-    </div>
-        <div class="col-md-4">
-        <h3>Recipe Start</h3>
-        <form action="/action_page.php">
-            <label text-align=center>Ingredient:</label><br>
-            <input text-align=center type="text"><br>
-            <div class="collapse multi-collapse" id="collapsePrefForm">
-                <div class="card card-body">
-        
-                    <form>
-                        <label text-align=center>Ingredient 2:</label><br>
-                        <input text-align=center type="text"><br><br>
-                    </form>
-                </div>
-            </div>
-        </form>  
-    </div>
-</div>
-</div>
-</div>
+        <div class="col-sm-12">
+            
+            <form action="/external/" method="post">
+                {%csrf_token%}
+                <h5 text-align=center>Input 3 Ingredients:</h5>
 
-<div>
-    <a class="link"  data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapsePrefForm">Add Ingredients...</a>
-</div>
-
-<div>
-    <a class="link"  data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapsePrefForm">Nutritional Preferences...</a>
-</div>
+                <input type="text" name="param1" required><br>
+                {{ingredient1}}<br>
+                <!-- <input type="text" name="param2" required><br>
+                <br>
+                <input type="text" name="param3" required><br>
+                <br>
+                <input type="text" name="param4" required><br> -->
+                
+              
+                <input class="btn btn-large btn-info" type="submit" value="Get Started!">
+               
+                
+            </form>
   
-<div class="container">
+
+            
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container">
     <div class="row">
         <div class="col-sm-4">
-        </div>
-        <div class="col-sm-4">
-        <div class="collapse multi-collapse" id="collapsePrefForm2">
-            <div class="card card-body">
-
-            <button onclick= "location.href= '{% url 'PizzeriaMLcode' %}'">Execute Script</button> <hr>
-
-            <form action="=/external/" method="post">
-                {% csrf_token %}
-                Input Text: 
+            <form method="POST">{% csrf_token %}
+                Enter the command: 
                 <input type="text" name="param" required><br>
-                {{ingredient_external}}<br>
-                {{ingredient1}}
-                <input type="submit" value="Execute Externel Script">
-
-                
-
+                {{ myform }}
+                <input type="submit" name="submit_cmd" value="Run" />
             </form>
-
-            </div>
-        </div>
-        </div>
+            {% if output %}<h3>{{ output }}</h3>{% endif %}
+            {% if exit_code %}<h3>Your command returned an error: {{ error_msg }}</h3>{% endif %}
+            
     </div>
-</div>
-
-
-<div>
-    <a class="btn btn-large btn-info" href="1">
-        Generate Other Ingredients
-    </a>
-</div>
+</div> -->
 
 
 {% endblock %}

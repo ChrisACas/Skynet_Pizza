@@ -9,8 +9,7 @@ import string
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 
-outputstr = "This is the start of the program: Your ingredient is %s" % (sys.argv[1])
-print(outputstr)
+
 nltk.download('stopwords')
 data= pd.DataFrame()
 data = pd.read_csv(r'/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/recipe_output_correct.csv', encoding='utf-8')
@@ -50,17 +49,16 @@ model = gensim.models.Word2Vec(sentences = review_data_list, size = Embedding_Di
 words = list(model.wv.vocab)
 print('Amount of ingredients: %d' % len(words))
 
-exit()
+
 
 #------------------------------
 #RECOMMENDATION SYSTEM CODE:
 
-print('Welcome to Skynet Pizzeria!')
-print('-------------------------------------------------------------------------------')
-ingredient1= input("Choose 1 specific ingredient(peppers,onions,chicken,etc) to search for the top similar ingredients to combine with. Note that the ingredient can be a topping, sauce, or cheese. **Type ingredient in all lowercase: ")
-print('-------------------------------------------------------------------------------')
-print(f"Here are the results of similar ingredients to {ingredient1} (with the most similar ingredient at the top):")
-model.wv.most_similar(ingredient1)
+
+ingredient1 = sys.argv[1]
+print(f"Ingredients similar too {ingredient1}")
+print(str(model.wv.most_similar(ingredient1)))
+exit()
 
 ingredient2= input("Which ingredient would you like to add to the pizza?")
 decision1= input(f"Your current pizza consists of {ingredient1} and {ingredient2} , would you like us to search for another similar ingredient that would go well with this current pizza? Type yes or no" )
