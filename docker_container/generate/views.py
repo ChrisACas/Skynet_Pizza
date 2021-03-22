@@ -46,14 +46,33 @@ def integration(request):
     return render(request, 'generate/integration.html')
 
 def external(request):
-    ingredient = request.POST.get('param1')
-    print(ingredient)
-    MLoutput = run([sys.executable, "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", ingredient], shell=False, stdout=PIPE)
-    recommendation = MLoutput.stdout.decode("utf-8").replace('/n', '  |  ')
-    print(recommendation)
-
-    return render(request, 'generate/integration.html', {'ingredient1':recommendation})
+    # post requests
+    crust_type = request.POST.get('crust_type')
+    cheese_type = request.POST.get('cheese_type')
+    sauce_type = request.POST.get('sauce_type')
+    topping_num =  request.POST.get('topping_num')
+    # put into one data structure (list)
+    ingredients = [crust_type, cheese_type, sauce_type]
+    # execute script and receive feedback
+    MLoutput = run([sys.executable, "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", ' '.join(ingredients), str(topping_num)], shell=False, stdout=PIPE)
+    raw_output = MLoutput.stdout.decode("utf-8")
+    # format the output to dictionary 
+    output = external_format(request, raw_output)
     
+    return render(request, 'generate/integration.html', {'output' : output})
+    
+def external_format(request, raw_output):
+    format_string = list(filter(None, raw_output.split('\n')))
+    str_list = []
+    for i in format_string: 
+        str_list.append(list(i.split(' ')))
+        
+    output_dict = dict(str_list)
+
+    return output_dict
+
+
+
 
 # def welcome_page(request):
     output = ""

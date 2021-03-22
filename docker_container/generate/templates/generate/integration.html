@@ -26,13 +26,21 @@
                 {%csrf_token%}
                 <h5 text-align=center>Input 3 Ingredients:</h5>
 
-                <input type="text" name="param1" required><br>
-                {{ingredient1}}<br>
-                <!-- <input type="text" name="param2" required><br>
+                Crust:  <input type="text" name="crust_type" required><br>
                 <br>
-                <input type="text" name="param3" required><br>
+                Cheese: <input type="text" name="cheese_type" required><br>
                 <br>
-                <input type="text" name="param4" required><br> -->
+                Sauce:  <input type="text" name="sauce_type" required><br>
+                <br>
+                Topping Number: <input type="number" name="topping_num" required><br>
+                <br>
+
+                <ul>
+                    {% for k, v in output.items %}
+                        <li>{{ k }}: {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            
                 
               
                 <input class="btn btn-large btn-info" type="submit" value="Get Started!">
