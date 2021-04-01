@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 from django.contrib import admin
@@ -25,7 +25,7 @@ urlpatterns = [
 
     #/generate/integration
     path('integration/', views.integration, name='integration'),
-    path('external/', views.external, name='externel')
-
+    path('external/', views.external, name='externel'),
+    path('piecemeal/', views.piecemeal, name='piecemeal')
 
 ]

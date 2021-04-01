@@ -5,11 +5,8 @@
     h1 {
       text-align: center;
     }
-    th {
-      text-align: center;
-    }
     option, div{
-      text-align: center;
+      text-align:center;
     }
     .btn{
       background-color: #cc0000;
@@ -27,8 +24,8 @@
             
             <form action="/external/" method="post">
                 {%csrf_token%}
-                <h5 text-align="center">3 Pizza Base Elements:</h5>
-                <div class="form-inline">
+                <h5 text-align=center>3 Pizza Base Elements:</h5>
+                <!-- <div class="form-inline">
                     <div class="form-group">
                         <h5 class="text-left">Crust:</h5><input class= "form-control" type="text" name="crust_type" required>
                     </div>
@@ -45,32 +42,30 @@
                         <h5 class="text-left">Number of Toppings:</h5><input class= "form-control" type="number" name="topping_num" required>
                     </div>
                     <br>
-                </div>
-                <br>
-                <input class="btn btn-large btn-info" type="submit" value="Get Started!">              
-            </form>  
-            <br>     
-            
-            <div class="container-sm">
-                <table class="table table-sm table-striped">
-                    <thead>
-                        <tr class="row m-0">
-                            <th class="d-inline-block col-1">Ingredients:</th>
+                </div> -->
+
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ingredient</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         
                             {% for k, v in output.items %}
-                            <tr class="row m-0">
-                                <td class="d-inline-block col-1">{{ k }}</td>
+                            <tr>
+                                <th scope="row">{{ k }}</th>
                             </tr>
                             {% endfor %}
                         
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+
                 
-                          
+                <input class="btn btn-large btn-info" type="submit" value="Get Started!">                
+            </form>            
         </div>
     </div>
 </div>

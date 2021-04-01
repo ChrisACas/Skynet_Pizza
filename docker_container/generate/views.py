@@ -54,11 +54,16 @@ def external(request):
     # put into one data structure (list)
     ingredients = [crust_type, cheese_type, sauce_type]
     # execute script and receive feedback
-    MLoutput = run([sys.executable, "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", ' '.join(ingredients), str(topping_num)], shell=False, stdout=PIPE)
+    MLoutput = run([sys.executable,
+    "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", 
+    ' '.join(ingredients),
+    str(topping_num)],
+    shell=False,
+    stdout=PIPE)
     raw_output = MLoutput.stdout.decode("utf-8")
     # format the output to dictionary 
     output = external_format(request, raw_output)
-    
+
     return render(request, 'generate/integration.html', {'output' : output})
     
 def external_format(request, raw_output):
@@ -70,6 +75,10 @@ def external_format(request, raw_output):
     output_dict = dict(str_list)
 
     return output_dict
+
+def piecemeal(request): 
+
+    return render(request, 'generate/piecemeal.html')
 
 
 
