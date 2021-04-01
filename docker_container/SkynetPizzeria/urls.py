@@ -20,12 +20,9 @@ from django.urls import include, path
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.urls import path
-from endpoints.urls import urlpatterns as endpoints_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('generate.urls')),
 ]
 
-urlpatterns += endpoints_urlpatterns
-# backend/server/server/urls.py file
