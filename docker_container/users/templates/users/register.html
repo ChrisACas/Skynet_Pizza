@@ -1,0 +1,19 @@
+{% extends "generate/base.html" %}
+{% block body %}
+    <h1>Registration Page</h1>
+    <div class="content-section">
+        <form method="POST">
+            {%csrf_token%}
+            <fieldset class="form-group">
+                <legend class="border-bottom">Join Today</legend>
+                {{ userForm.as_p }}
+                <div class="form-group">
+                    <button class="btn" type="submit">Sign Up!</button>
+                </div>
+            </fieldset>
+        </form>
+        <div>
+            Sign In?
+        </div>
+    </div>
+{% endblock %}

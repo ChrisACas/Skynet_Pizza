@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['blooming-beyond-76863.herokuapp.com', 'localhost', '127.0.0.1'
 
 INSTALLED_APPS = [
     'generate.apps.GenerateConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
