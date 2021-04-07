@@ -1,4 +1,5 @@
 {% extends "generate/base.html" %}
+{% load crispy_forms_tags %}
 {% block body %}
     <h1>Registration Page</h1>
     <div class="content-section">
@@ -6,7 +7,7 @@
             {%csrf_token%}
             <fieldset class="form-group">
                 <legend class="border-bottom">Join Today</legend>
-                {{ userForm.as_p }}
+                {{ userForm|crispy }}
                 <div class="form-group">
                     <button class="btn" type="submit">Sign Up!</button>
                 </div>
@@ -16,4 +17,4 @@
             Sign In?
         </div>
     </div>
-{% endblock %}
+{% endblock %} 
