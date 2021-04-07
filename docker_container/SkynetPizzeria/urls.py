@@ -19,7 +19,9 @@ from django.urls import include, path
 #below four for example
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth.views import LoginView 
+from django.contrib.auth.views import LogoutView 
+from django.urls import include, path
 from users import views as user_views
 
 
@@ -27,6 +29,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('generate.urls'), name='integrate'),
     path('register/', user_views.register, name='register'),
+    path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    
 
 ]
 

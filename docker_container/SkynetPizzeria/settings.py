@@ -122,3 +122,4 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK ='uni_form'
+LOGIN_REDIRECT_URL = '/integration/'
