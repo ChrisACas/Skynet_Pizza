@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 class Pizza(models.Model):
+    # user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     crust = models.CharField(max_length=80)
     sauce = models.CharField(max_length=80)
     cheese = models.CharField(max_length=80)
@@ -13,9 +15,8 @@ class Pizza(models.Model):
 
 class Topping(models.Model):
     pizza = models.ForeignKey(to=Pizza, on_delete=models.CASCADE)
-    topping_type = models.CharField(max_length=80)
-    ingredient = models.CharField(max_length=250)
-    nutritional = models.CharField(max_length=250)
+    topping = models.CharField(max_length=80)
+    
 
     def __str__(self):
-        return self.topping_type + ' | ' + self.ingredient
+        return self.topping + ' | ' + self.ingredient

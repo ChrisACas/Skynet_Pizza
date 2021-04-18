@@ -3,23 +3,32 @@
 {% block body %}
     
 <div class="content-section">
-    <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-        </div>
-        <form method="POST" enctype="multipart/form-data">
-            {%csrf_token%}
-            <fieldset class="form-group">
-                <legend class="border-bottom">Join Today</legend>
-                {{ user_form|crispy }}
-                {{ profile_form|crispy }}
-                <div class="form-group">
-                    <button class="btn" type="submit">Update!</button>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="media">
+                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ user.username }}</h2>
+                        <p class="text-secondary">{{ user.email }}</p>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom">Update Profile </legend>
+                            {{ user_form|crispy }}
+                            {{ profile_form|crispy }}
+                            <div class="form-group">
+                                <button class="btn" type="submit">Update!</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
-            </fieldset>
-        </form>
+
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %} 

@@ -10,19 +10,27 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default" style="background-color: #cc0000;">
-  <div class="container-fluid">
 
-    <!-- LOGO -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'index' %}" style="color: white">
-        <strong>Skynet Pizzeria</strong>
-      </a>
+  <nav class="navbar navbar-inverse" style="background-color: #cc0000;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'integration' %}" style="color: white">Skynet Pizzeria</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}" style="color: white"><span class="glyphicon glyphicon-user" style="color: white"></span> 
+          Profile</a></li>
+        <li><a href="{% url 'logout' %}" style="color: white"><span class="glyphicon glyphicon-log-in" style="color: white"></span> 
+          Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'register' %}" style="color: white"><span class="glyphicon glyphicon-user" style="color: white"></span> 
+          Register</a></li>
+        <li><a href="{% url 'login' %}" style="color: white"><span class="glyphicon glyphicon-log-in" style="color: white"></span> 
+          Login</a></li>
+        {%endif%}
+      </ul>
     </div>
-
-     <!-- ITEMS (empty action stuff) -->
-  </div>
-</nav>
+  </nav>
 
 {% if messages %}
   {%for message in messages %}
