@@ -18,6 +18,8 @@ from django.urls import include, path
 
 #below four for example
 from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView 
 from django.contrib.auth.views import LogoutView 
@@ -31,9 +33,8 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    
-    
+    path('logout/', LogoutView.as_view(template_name='users/logout.html'), name='logout'),   
+]  
 
-]
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

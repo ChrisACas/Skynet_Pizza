@@ -8,11 +8,13 @@ from gensim.models.keyedvectors import KeyedVectors
 import string
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
+# manages dictionaries
+from operator import itemgetter
 
 
 nltk.download('stopwords')
 data= pd.DataFrame()
-data = pd.read_csv(r'/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/recipe_output_correct.csv', encoding='utf-8')
+data = pd.read_csv(r'/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/recipe_output_latest.csv', encoding='utf-8')
 
 #create empty list
 review_data_list = list()
@@ -40,57 +42,40 @@ for line in indv_lines:
 	review_data_list.append(words)
 
 #Amount of recipes in the list
-print('Amount of recipes: %d' % len(review_data_list)) 
+#  print('Recipes: %d' % len(review_data_list))
+
 
 Embedding_Dim = 100
 #train word2vec model
 model = gensim.models.Word2Vec(sentences = review_data_list, size = Embedding_Dim, workers = 4, min_count = 1)
 #Vocabulary size
 words = list(model.wv.vocab)
-print('Amount of ingredients: %d' % len(words))
-
+#  print('Ingredients: %d' % len(words))
 
 
 #------------------------------
 #RECOMMENDATION SYSTEM CODE:
 
 
-ingredient1 = sys.argv[1]
-print(f"Ingredients similar too {ingredient1}")
-print(str(model.wv.most_similar(ingredient1)))
+# Gather 3 core ingredients inputs and num of outputs
+ingredient_list = list(sys.argv[1].split(" "))
+crust_type = ingredient_list[0]
+cheese_type = ingredient_list[1]
+sauce_type = ingredient_list[2]
+topping_num = int(sys.argv[2])
+
+# Type cast to dictionary before only getting desired number of toppings 
+ingredients = dict(model.wv.most_similar(crust_type))
+n_ingredients = dict(sorted(ingredients.items(), key = itemgetter(1), reverse = True)[:topping_num])
+
+# print n num of dict items sorted from high to low
+for key, value in n_ingredients.items():
+    print(key, value)
+    
+# Print entire dictionary
+# for key, value in ingredients.items():
+#     print(key, value)
+    
+
 exit()
-
-ingredient2= input("Which ingredient would you like to add to the pizza?")
-decision1= input(f"Your current pizza consists of {ingredient1} and {ingredient2} , would you like us to search for another similar ingredient that would go well with this current pizza? Type yes or no" )
-print('-------------------------------------------------------------------------------')
-if decision1 == "no" :
-    print('Your finalized pizza has %s and %s' % (ingredient1,ingredient2))
-elif decision1 == "yes" :
-    print(f"Here are the results of similar ingredients recommended for your pizza:     {model.wv.most_similar(ingredient2)}")
-    ingredient3= input("Which ingredient would you like to add to the pizza?")
-    print("--------------------------------------------------------------------------------------------------")
-    decision2= input(f"Your current pizza consists of {ingredient1},{ingredient2}, and {ingredient3}. Would you like us to search for another similar ingredient that would go well with this current pizza? Type yes or no " )
-else:
-    print("Thank you for choosing Skynet Pizzeria, have a great day")
-
-if decision2 == "no" :
-    print('Your finalized pizza has %s , %s , and %s' % (ingredient1,ingredient2,ingredient3))
-elif decision2 == "yes" :
-    print(f"Here are the results of similar ingredients recommended for your pizza:     {model.wv.most_similar(ingredient3)}")
-    ingredient4= input("Which ingredient would you like to add to the pizza?")
-    print("--------------------------------------------------------------------------------------------------")
-    decision3= input(f"Your current pizza consists of {ingredient1},{ingredient2},{ingredient3}, and {ingredient4}. Would you like us to search for another similar ingredient that would go well with this current pizza? Type yes or no (NOTE: You are limited to ONE more topping) " )
-else:
-    print("Thank you for choosing Skynet Pizzeria, have a great day")
-
-if decision3 == "no" :
-    print('Your finalized pizza has %s , %s , and %s' % (ingredient1,ingredient2,ingredient3))
-elif decision3 == "yes" :
-    print(f"Here are the results of similar ingredients recommended for your pizza:     {model.wv.most_similar(ingredient4)}")
-    ingredient5= input("Which ingredient would you like to add to the pizza?")
-    print("--------------------------------------------------------------------------------------------------")
-    print(f"Your final pizza consists of {ingredient1},{ingredient2},{ingredient3},{ingredient4}, and {ingredient5}. Thank you for choosing Skynet Pizzeria, we hope you enjoy your custom pizza!")
-else:
-    print("Thank you for choosing Skynet Pizzeria, have a great day")
-
 
