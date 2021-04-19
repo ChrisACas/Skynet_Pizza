@@ -3,30 +3,20 @@ import sys
 from django.shortcuts import render, get_object_or_404
 from . models import Pizza, Topping
 from . serializers import PizzaSerializer
+from . forms import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.contrib.auth.models import User
 
 #integration
 from subprocess import run, PIPE, Popen
 from  . forms import command_form
 
-
-
 # Create your views here.
-
 def index(request):
     all_pizza = Pizza.objects.all()
     return render(request, 'generate/index.html', {'all_pizza' : all_pizza})
-
-###Shorter Shortcut version of the above
-# from django.shortcuts import render
-# def index(request):
-#     all_pizza = Pizza.objects.all()
-#     context = {'all_pizza': all_pizza}
-#     return render(request, 'generate/index.html', context)
-
-
 def detail(request, pizza_id):
     all_pizza = Pizza.objects.all()
     pizza = get_object_or_404(Pizza, id=pizza_id)
@@ -34,15 +24,25 @@ def detail(request, pizza_id):
     'pizza': pizza,
     'all_pizza' : all_pizza
     })
-
 def nutrition(request):
     return render(request, 'generate/nutrition.html', {})
-
 def form(request):
     return render(request, 'generate/form.html', {})
 
 ########## For Inegration Below 
 def integration(request):
+    # pizza_form = PizzaForm()
+    # topping_formset = ToppingFormset()
+
+    # if request.POST:
+    #     pizza_form = PizzaForm(request.POST, instance=request.user)
+    #     if pizza_form.is_valid():
+    #         pizza = pizza_form.save()
+    #         topping_formset = ToppingFormset(request.POST, instance=pizza)
+    #         if topping_formset.is_valid():
+    #             topping = topping_formset.save()
+    #         return redirect("/profile")
+    #         context = {'pizza_form': pizza_form, 'topping_formset':topping_formset}
     return render(request, 'generate/integration.html')
 
 def external(request):
@@ -53,6 +53,7 @@ def external(request):
     topping_num =  request.POST.get('topping_num')
     # put into one data structure (list)
     ingredients = [crust_type, cheese_type, sauce_type]
+
     # execute script and receive feedback
     MLoutput = run([sys.executable,
     "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", 
@@ -60,10 +61,14 @@ def external(request):
     str(topping_num)],
     shell=False,
     stdout=PIPE)
+
     raw_output = MLoutput.stdout.decode("utf-8")
+
     # format the output to dictionary 
     output = external_format(request, raw_output)
 
+    #save to model
+    save_recipe(request, crust_type, cheese_type, sauce_type, output)
     return render(request, 'generate/integration.html', {'output' : output})
     
 def external_format(request, raw_output):
@@ -80,7 +85,14 @@ def piecemeal(request):
 
     return render(request, 'generate/piecemeal.html')
 
-
+def save_recipe(request, crust, cheese, sauce, output):
+    pizza = Pizza()
+    pizza.user = request.user
+    pizza.crust = crust
+    pizza.cheese = cheese
+    pizza.sauce = sauce
+    pizza.save()
+    return
 
 
 # def welcome_page(request):

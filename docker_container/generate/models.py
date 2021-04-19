@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
+# Create your models here
 class Pizza(models.Model):
-    # user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True)
     crust = models.CharField(max_length=80)
     sauce = models.CharField(max_length=80)
     cheese = models.CharField(max_length=80)
@@ -19,4 +19,4 @@ class Topping(models.Model):
     
 
     def __str__(self):
-        return self.topping + ' | ' + self.ingredient
+        return self.topping

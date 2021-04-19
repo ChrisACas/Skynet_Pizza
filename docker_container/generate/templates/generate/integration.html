@@ -1,4 +1,5 @@
 {% extends 'generate/base.html' %}
+{% load crispy_forms_tags %}
 {% block body %}
 <style>
 
@@ -49,6 +50,17 @@
                 <br>
                 <input class="btn btn-large btn-info" type="submit" value="Get Started!">              
             </form>  
+            <!-- <form method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">Update Profile </legend>
+                    {{ pizza_form|crispy }}
+                    <div class="form-group">
+                        <button class="btn" type="submit">Get Started!</button>
+                    </div>
+                </fieldset>
+            </form> -->
+
             <br>     
             
             <div class="container-sm">
