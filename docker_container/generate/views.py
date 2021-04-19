@@ -87,11 +87,17 @@ def piecemeal(request):
 
 def save_recipe(request, crust, cheese, sauce, output):
     pizza = Pizza()
+    topping = Topping()
     pizza.user = request.user
     pizza.crust = crust
     pizza.cheese = cheese
     pizza.sauce = sauce
     pizza.save()
+    for k, v in output.items():
+        topping.pizza = pizza
+        topping.topping = k
+        topping.save()
+    
     return
 
 
