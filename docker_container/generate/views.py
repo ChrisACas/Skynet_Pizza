@@ -2,12 +2,12 @@ import json
 import sys
 from django.shortcuts import render, get_object_or_404
 from . models import Pizza, Topping
-from . serializers import PizzaSerializer
 from . forms import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
+import os
 
 #integration
 from subprocess import run, PIPE, Popen
@@ -55,8 +55,9 @@ def external(request):
     ingredients = [crust_type, cheese_type, sauce_type]
 
     # execute script and receive feedback
+    ML_path = os.path.join(os.path.dirname(__file__), 'ML/PizzeriaMLcodeModified.py')
     MLoutput = run([sys.executable,
-    "/Users/engrbundle/Documents/ECEN 404/Skynet_Pizza/PizzeriaMLcodeModified.py", 
+    ML_path, 
     ' '.join(ingredients),
     str(topping_num)],
     shell=False,
@@ -86,6 +87,8 @@ def piecemeal(request):
     return render(request, 'generate/piecemeal.html')
 
 def save_recipe(request, crust, cheese, sauce, output):
+    if not request.user.is_authenticated:
+        return
     pizza = Pizza()
     topping = Topping()
     pizza.user = request.user
@@ -121,23 +124,3 @@ def save_recipe(request, crust, cheese, sauce, output):
 
 
 ########### For Integration Above
-@api_view(['GET'])
-def getAllPizza(request):
-    pizza = Pizza.objects.all()
-    serializer = PizzaSerializer(pizza, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def getPizza(request, id):
-    pizza = Pizza.objects.get(id=id)
-    serializer = PizzaSerializer(pizza, many=False)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def createPizza(request):
-    pizza = PizzaSerializer(data=request.data)
-
-    if pizza.is_valid():
-        pizza.save()
-
-    return Response(pizza.data)
