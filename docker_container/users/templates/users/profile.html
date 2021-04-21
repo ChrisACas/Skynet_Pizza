@@ -29,5 +29,25 @@
             </div>
         </div>
     </div>
+
+    <div class="container" style="margin-top:1em;">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="list-group">
+                    {% for pizza in pizzas %}
+                    <li class="list-group-item">{{ pizza }}</li>
+                        <ul class="list-group">
+                            {% for topping in toppings %}
+                                {% if pizza.id == topping.pizza_id %}
+                                    <li class="list-group-item">{{ topping }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %} 

@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
+
 import os
 
 #integration
@@ -90,17 +91,16 @@ def save_recipe(request, crust, cheese, sauce, output):
     if not request.user.is_authenticated:
         return
     pizza = Pizza()
-    topping = Topping()
     pizza.user = request.user
     pizza.crust = crust
     pizza.cheese = cheese
     pizza.sauce = sauce
     pizza.save()
     for k, v in output.items():
+        topping = Topping()
         topping.pizza = pizza
         topping.topping = k
         topping.save()
-    
     return
 
 

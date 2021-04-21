@@ -15,7 +15,7 @@ from operator import itemgetter
 
 nltk.download('stopwords')
 data= pd.DataFrame()
-ML_data_path = os.path.join(os.path.dirname(__file__), 'recipe_output_latest.csv')
+ML_data_path = os.path.join(os.path.dirname(__file__), 'recipe_output_latest_prev.csv')
 data = pd.read_csv(ML_data_path, encoding='utf-8')
 
 #create empty list

@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+
+from generate.models import *
+
 # Create your views here.
 def register(request):
     if request.method == 'POST': 
@@ -18,6 +21,8 @@ def register(request):
 
 @login_required
 def profile(request):
+    pizzas = Pizza.objects.filter(user=request.user)
+    toppings = Topping.objects.all()
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST,
@@ -34,6 +39,8 @@ def profile(request):
 
 
     context = {
+        'pizzas': pizzas,
+        'toppings': toppings,
         'user_form': user_form,
         'profile_form': profile_form
     }
