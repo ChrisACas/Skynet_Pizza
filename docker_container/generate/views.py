@@ -53,8 +53,7 @@ def external(request):
     sauce_type = request.POST.get('sauce_type')
     topping_num =  request.POST.get('topping_num')
     # put into one data structure (list)
-    ingredients = [crust_type, cheese_type, sauce_type]
-
+    ingredients = [crust_type.split()[0].lower(), cheese_type.split()[0].lower(), sauce_type.split()[0].lower()]
     # execute script and receive feedback
     ML_path = os.path.join(os.path.dirname(__file__), 'ML/PizzeriaMLcodeModified.py')
     MLoutput = run([sys.executable,
