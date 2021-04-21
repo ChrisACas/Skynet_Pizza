@@ -1,6 +1,7 @@
 #import other classes
 from format import *
-from URLfind import *
+from URLfind import Sitemap as URLfind
+from URLSQL import manageURL as URLSQL
 import requests
 
 #BeutifulSoup import for reading HTML
@@ -11,18 +12,29 @@ from bs4 import BeautifulSoup
 #recipe_scrapers  import for pulling actual recipe
 from recipe_scrapers import scrape_me
 
+#database imports 
+import sqlite3 
 
+test = URLSQL()
+test.connectTable()
+exit()
+
+#initialize lists
 URLlist = []
 URLlist.append("https://www.allrecipes.com/")
 visitedList = []
-scraper = Sitemap(URLlist, visitedList)
+scraper = URLfind(URLlist, visitedList)
 
-for x in range(100):
+
+
+while len(scraper.URLlist) < 300:
     scraper.readPageLinks()
     scraper.clean()
     scraper.stats()
 
-scraper.printvisitedList
+scraper.printvisitedList()
+print("------------------------------------------")
+
 exit()
 
 
@@ -41,4 +53,3 @@ print(simplified_ingredient)
 
 #Format data
 
-#Push to csv

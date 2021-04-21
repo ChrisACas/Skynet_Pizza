@@ -1,0 +1,27 @@
+{% extends "generate/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Login Page</h1>
+            <div class="content-section">
+                <form method="POST">
+                    {%csrf_token%}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom">Login:</legend>
+                        {{ form.as_p }}
+                        <div class="form-group">
+                            <button class="btn" type="submit">Log in!</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <div>
+                    <a href="{% url 'register' %}" >Need an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

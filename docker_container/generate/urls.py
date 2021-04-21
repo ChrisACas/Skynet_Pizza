@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 from django.contrib import admin
@@ -7,7 +7,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     #/generate/
-    path('', views.index, name='index'),
+    path('index/', views.index, name='index'),
 
     #/generate/details
     path('<int:pizza_id>/',  views.detail, name='detail'),
@@ -18,9 +18,9 @@ urlpatterns = [
     #/generate/form
     path('form',  views.form, name='form'),
 
-    path('AllPizza/', views.getAllPizza, name='AllPizza'),
-    path('Pizza/<int:id>/', views.getPizza, name='Pizza'),
-    path('CreatePizza/', views.createPizza, name='CreatePizza'),
-
+    #/generate/integration
+    path('', views.integration, name='integration'),
+    path('external/', views.external, name='externel'),
+    path('piecemeal/', views.piecemeal, name='piecemeal')
 
 ]

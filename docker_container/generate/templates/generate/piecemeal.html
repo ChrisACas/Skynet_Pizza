@@ -1,0 +1,91 @@
+{% extends 'generate/base.html' %}
+{% block body %}
+<style>
+
+    h1 {
+      text-align: center;
+    }
+    option, div{
+      text-align:center;
+    }
+    .btn{
+      background-color: #cc0000;
+    }
+    
+</style>
+    
+
+<h1 text-align=center>Random Toppings</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <form action="/external/" method="post">
+                {%csrf_token%}
+                <h5 text-align=center>3 Pizza Base Elements:</h5>
+                <!-- <div class="form-inline">
+                    <div class="form-group">
+                        <h5 class="text-left">Crust:</h5><input class= "form-control" type="text" name="crust_type" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <h5 class="text-left">Cheese:</h5><input class= "form-control" type="text" name="cheese_type" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <h5 class="text-left">Sauce:</h5><input class= "form-control" type="text" name="sauce_type" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <h5 class="text-left">Number of Toppings:</h5><input class= "form-control" type="number" name="topping_num" required>
+                    </div>
+                    <br>
+                </div> -->
+
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ingredient</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {% for k, v in output.items %}
+                            <tr>
+                                <th scope="row">{{ k }}</th>
+                            </tr>
+                            {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                <input class="btn btn-large btn-info" type="submit" value="Get Started!">                
+            </form>            
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form method="POST">{% csrf_token %}
+                Enter the command: 
+                <input type="text" name="param" required><br>
+                {{ myform }}
+                <input type="submit" name="submit_cmd" value="Run" />
+            </form>
+            {% if output %}<h3>{{ output }}</h3>{% endif %}
+            {% if exit_code %}<h3>Your command returned an error: {{ error_msg }}</h3>{% endif %}
+            
+    </div>
+</div> -->
+
+
+{% endblock %}
+
